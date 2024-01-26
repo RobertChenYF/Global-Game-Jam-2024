@@ -5,37 +5,48 @@ using UnityEngine;
 
 public class Gameplay : MonoBehaviour
 {
+    public string mian = "Mian";
+    public int score = -1;
+    public int requestTime = 10;
+    public string managerName = "Manager";
     public List<string> ingreList;
     public Pancake pancake;
     public Request request;
 
-    private List<IngrePool> ingrePoolList;
-    private string managerName = "Manager";
+    private List<IngrePool> ingrePoolList; 
     private Vector3 pancakelocation;
+    private Vector3 requestlocation;
+    private GameObject requestObject;
 
     void Start()
     {
         ingrePoolList = new List<IngrePool>(FindObjectsOfType<IngrePool>());
+        ingrePoolList[0].ingredientType = mian;
         ingreList = ingrePoolList.Select(ingrepool => ingrepool.ingredientType).ToList();
+        request = FindObjectsOfType<Request>()[0];
         pancake = FindObjectsOfType<Pancake>()[0];
         pancakelocation = pancake.transform.position;
+        requestlocation = request.transform.position;
+        Score();
+        CreateRequest();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (request.time <= 0)
-        // {
-        //     GameOver();
-        // }
-        // else if (request.owner == managerName)
-        // {
-        //     MetManager();
-        // }
-        // else if (AreListsEqual(request.types, pancake.types))
-        // {
-        //     Score();
-        // }
+        if (request.time <= 0)
+        {
+            GameOver();
+        }
+        else if (request.owner == managerName)
+        {
+            MetManager();
+        }
+        else if (AreListsEqual(request.getSatisfiedParts(), pancake.types))
+        {
+            Score();
+            CreateRequest();
+        }
     }
 
     void GameOver()
@@ -50,7 +61,17 @@ public class Gameplay : MonoBehaviour
 
     void Score()
     {
+        Destroy(request);
+        Destroy(pancake);
+        score++;
+    }
 
+    void CreateRequest()
+    {
+        string person = "Man";
+        List<string> requirements = new List<string> () {"Mian", "Egg", "CuiBing"};
+        requestObject = Instantiate(request.GetComponent<GameObject>(), requestlocation, Quaternion.identity);
+        requestObject.GetComponent<Request>().Initialize(requestTime, requirements, person);
     }
 
     bool AreListsEqual<T>(List<T> list1, List<T> list2)
@@ -67,7 +88,6 @@ public class Gameplay : MonoBehaviour
                 return false;
             }
         }
-
         return true;
     }
 }
