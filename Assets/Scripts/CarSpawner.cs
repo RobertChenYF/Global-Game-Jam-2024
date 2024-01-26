@@ -41,6 +41,7 @@ public class CarSpawner : MonoBehaviour
                     obj.SetActive(true);
                     // Move the object to a spawn point
                     obj.transform.position = spawnPoints[i].position;
+                    obj.GetComponent<SpriteRenderer>().sortingOrder = i - 1;
                     obj.GetComponent<CarController>().carSpeed = Random.Range(-0.5f, 0.5f) + 1;
                 }
             }

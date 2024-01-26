@@ -74,6 +74,8 @@ public class CartController : MonoBehaviour
             initialPosition = transform.position;
             initialRotation = transform.rotation;
 
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder -= 1;
+
             // Start the coroutine for switching lanes
             switchCoroutine = StartCoroutine(SwitchLane());
         }
@@ -94,6 +96,8 @@ public class CartController : MonoBehaviour
             // Store the initial position and rotation of the cart
             initialPosition = transform.position;
             initialRotation = transform.rotation;
+
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder += 1;
 
             // Start the coroutine for switching lanes
             switchCoroutine = StartCoroutine(SwitchLane());
