@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         transform.position = new Vector3(GrannyCartPos.position.x + offset.x, transform.position.y, transform.position.z);
     }
