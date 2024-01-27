@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f4bb855336f214b98b8166ede12be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 3312561259464266115, guid: 8bb089472a88d7340926c1bc35a4007e, type: 3}
+  source: {fileID: 3312561259464266115, guid: 172794de722c839448ab55ceb2ae4d91, type: 3}
   ingredientType: 1
   zPosition: 8
 --- !u!61 &528891087
@@ -1803,7 +1803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f4bb855336f214b98b8166ede12be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 3312561259464266115, guid: 869de0f84752247c3a935bb51047e146, type: 3}
+  source: {fileID: 3312561259464266115, guid: 8bb089472a88d7340926c1bc35a4007e, type: 3}
   ingredientType: 5
   zPosition: 8
 --- !u!212 &569934720
@@ -4349,11 +4349,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2850457067368251635, guid: 5f487167c4f134af79ff66ee5455633e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 14.762085
+      value: 14.366363
       objectReference: {fileID: 0}
     - target: {fileID: 2850457067368251635, guid: 5f487167c4f134af79ff66ee5455633e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 8.151247
+      value: 8.150112
       objectReference: {fileID: 0}
     - target: {fileID: 2850457067368251635, guid: 5f487167c4f134af79ff66ee5455633e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

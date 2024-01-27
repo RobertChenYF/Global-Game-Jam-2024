@@ -41,6 +41,7 @@ public class DanmakuGenerator : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log("danmu");
         time += Time.deltaTime;
 
         if (time > minKey && danmakus.Count > 0)
@@ -57,6 +58,7 @@ public class DanmakuGenerator : MonoBehaviour
     
     public void Generate(string text)
     {
+        //Debug.Log("generate");
         Vector3 randomPosition = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(minPercent, maxPercent), Random.Range(-0.3f, -0.5f), 0.2f));
         randomPosition.z = -2f;
         GameObject spawnedObject = Instantiate(danmaku, randomPosition, Quaternion.identity);

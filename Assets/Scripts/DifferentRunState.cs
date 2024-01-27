@@ -79,12 +79,12 @@ public class ChaseEarth : RunState
 
         //when player choose to enter combat
 
-       //if (manager.grannyCart.transform.position.x > 313 && manager.talkked == false)
-       // {
-       //     manager.talkked = true;
-       //     manager.ChangeState(new PeopleTalkEarth(manager));
-           
-       // }
+        if (manager.grannyCart.transform.position.x > 313 && manager.talkked == false)
+        {
+            manager.talkked = true;
+            manager.ChangeState(new PeopleTalkEarth(manager));
+
+        }
     }
 
     public override void Enter()
@@ -93,6 +93,7 @@ public class ChaseEarth : RunState
         manager.cartController.stop = false;
         manager.cartController.speed = 8;
         manager.carSpawner.SetActive(true);
+        manager.PoliceCartController.stop = false;
         Debug.Log("chase earth");
 
     }
@@ -102,7 +103,7 @@ public class ChaseEarth : RunState
         base.Leave();
         manager.cartController.stop = true;
         manager.carSpawner.SetActive(false);
-
+        manager.PoliceCartController.stop = true;
     }
 }
 
@@ -212,6 +213,10 @@ public class SpaceShooter : RunState
 
     bool scroll = false;
 
+    float timer2 = 0;
+
+
+
     public SpaceShooter(RunStateManager runStateManager) : base(runStateManager)
     {
 
@@ -230,33 +235,45 @@ public class SpaceShooter : RunState
             manager.cartRocket.SetActive(true);
         }
 
-        if (manager.spaceCartController.enabled == false)
-        {
-        velocity = velocity + Time.deltaTime * 1;
-        velocity = Mathf.Min(7, velocity);
 
-            //Debug.Log(velocity);
 
-        manager.spaceCartController.gameObject.transform.position += new Vector3(0, velocity*Time.deltaTime, 0);
-        }
-
-        if (velocity == 7 && manager.spaceCartController.enabled == false)
+        if (velocity >= 7 && scroll == false)
         {
             
-            Debug.Log("Stale Back");
-            
+          //  Debug.Log("Stale Back");
+
+            velocity = 0;
+
             manager.spaceStaleCamera.transform.position = manager.gameCamera.transform.position;
             manager.spaceStaleCamera.SetActive(true);
             
-            manager.spaceCartController.enabled = true;
-
+            
+            //manager.DanMuGenerator.SetActive(true);
             scroll = true;
+
+            //manager.spaceCartController.enabled = true;
             //start scroll the background
+        }
+        else if (scroll == false && manager.spaceCartController.enabled == false)
+        {
+            velocity = velocity + Time.deltaTime * 1;
+            velocity = Mathf.Min(7, velocity);
+
+
+            manager.spaceCartController.gameObject.transform.position += new Vector3(0, velocity * Time.deltaTime, 0);
         }
 
         if (scroll)
         {
             manager.ScrollerBackground.transform.position += new Vector3(0, -7*Time.deltaTime, 0);
+
+            timer2 += Time.deltaTime;
+
+            if(timer2 > 1)
+            {
+                manager.DanMuGenerator.SetActive(true);
+                manager.spaceCartController.enabled = true;
+            }
         }
 
 

@@ -36,6 +36,7 @@ public class PoliceCartController : MonoBehaviour
     private Coroutine switchCoroutine;
 
     private float timer = 0;
+    public bool stop = false;
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +50,14 @@ public class PoliceCartController : MonoBehaviour
     void Update()
     {
         // Move the cart to the right at a constant speed
+
+        if (!stop)
+        {
         transform.position += Vector3.right * speed * Time.deltaTime;
 
         timer += Time.deltaTime;
+
+        }
 
         if (timer >= 3)
         {

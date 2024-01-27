@@ -11,7 +11,7 @@ public class Danmaku : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.up * Time.deltaTime * ySpeed;
-        if (transform.position.y > 10)
+        if (transform.position.y > 100)
         {
             Destroy(gameObject);
         }

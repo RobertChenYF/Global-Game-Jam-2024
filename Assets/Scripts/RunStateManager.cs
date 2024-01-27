@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Cinemachine.Utility;
+using UnityEngine.SceneManagement;
 
 public class GlobalVariables
 {
@@ -52,6 +53,10 @@ public class RunStateManager : MonoBehaviour
 
     public GameObject ScrollerBackground;
 
+    public GameObject DanMuGenerator;
+
+    public PoliceCartController PoliceCartController;
+
     void Start()
     {
 
@@ -80,6 +85,12 @@ public class RunStateManager : MonoBehaviour
     public void changeMoney(int money)
     {
         GlobalVariables.money += money;
+    }
+
+    public void changeToMarsStandScene()
+    {
+        Debug.Log("switch to mars stand scene");
+        //SceneManager.LoadScene();
     }
 
     public void changeToShooterState()

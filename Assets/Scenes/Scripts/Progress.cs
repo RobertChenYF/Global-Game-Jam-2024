@@ -69,7 +69,7 @@ public RunStateManager runStateManager;
         else
         {
            text.text = "100% 助力成功";
-            runStateManager.changeToShooterState();
+           runStateManager.changeToShooterState();
            MoveObjects();
         }
         

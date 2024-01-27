@@ -32,6 +32,6 @@ public class BuyButton : MonoBehaviour
     void DisplayCount()
     {
         // 将计数显示在控制台
-        Debug.Log("Count: " + count);
+//        Debug.Log("Count: " + count);
     }
 }
