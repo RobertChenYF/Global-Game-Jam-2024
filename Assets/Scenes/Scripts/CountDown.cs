@@ -5,6 +5,9 @@ using TMPro;
 
 public class CountDown : MonoBehaviour
 {
+    public BuyButton buyButton;
+    public Progress progress;
+
     public float countdownDuration = 10f;
     private float time;
     private TextMeshPro text;
@@ -23,9 +26,9 @@ public class CountDown : MonoBehaviour
             time = Mathf.Max(0, time);
             text.text = time.ToString("F2");
         }
-        else
+        else if (buyButton.count < progress.progressCount)
         {
-            Debug.Log("Countdown timer reached zero!");
+            Debug.Log("Game Over");
         }
     }
 }

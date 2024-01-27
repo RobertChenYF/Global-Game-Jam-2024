@@ -6,19 +6,22 @@ public class Rocket : MonoBehaviour
 {
     public BuyButton buyButton;
     public Progress progress;
+    public float scaleIndex;
 
     private Vector3 basicScale;
     void Start()
     {
         basicScale = transform.localScale;
-        Debug.Log(basicScale);
+        scaleIndex = 1.0f;
     }
 
     void Update()
     {
-        if (buyButton.count <= progress.progressCount)
+        if (buyButton.count < progress.progressCount)
         {
-            transform.localScale = basicScale * (1 + 0.1f * buyButton.count);
+            scaleIndex  = 1 + 0.1f * buyButton.count;
         }
+        transform.localScale = scaleIndex * basicScale;
+        
     }
 }
