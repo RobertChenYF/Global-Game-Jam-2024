@@ -24,7 +24,7 @@ public class CountDown : MonoBehaviour
         {
             time -= Time.deltaTime;
             time = Mathf.Max(0, time);
-            text.text = $"还剩{time.ToString("F2")}秒";
+            text.text = $"{time.ToString("F2")}";
         }
         else if (buyButton.count < progress.progressCount)
         {

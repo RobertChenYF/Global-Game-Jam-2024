@@ -78,7 +78,7 @@ public class ChaseEarth : RunState
 
         //when player choose to enter combat
 
-        if (manager.grannyCart.transform.position.x > 45 && manager.talkked == false)
+       if (manager.grannyCart.transform.position.x > 313 && manager.talkked == false)
         {
             manager.talkked = true;
             manager.ChangeState(new PeopleTalkEarth(manager));
@@ -148,6 +148,57 @@ public class PeopleTalkEarth : RunState
         manager.cartController.stop = false;
         manager.dialogueSystem.SetActive(false);
     }
+}
+
+public class PingDuoDuo : RunState
+
+{
+    private float timer = 0;
+    public PingDuoDuo(RunStateManager runStateManager) : base(runStateManager)
+    {
+
+    }
+
+    public override void StateBehavior()
+    {
+        //when player choose to enter combat
+
+        timer += Time.deltaTime;
+
+        if (timer > 3)
+        {
+            EnableComponents();
+
+        }
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        manager.cartController.speed = 0;
+
+        manager.PDDAnimator.SetBool("enlarge", true);
+
+        
+
+       // manager.spaceCamera.SetActive(true);
+
+    }
+
+    public override void Leave()
+    {
+        base.Leave();
+
+    }
+
+    public void EnableComponents()
+    {
+        manager.progress.enabled = true;
+        manager.countDown.enabled = true;
+    }
+
+
 }
 
 public class SpaceShooter : RunState

@@ -26,7 +26,13 @@ public class RunStateManager : MonoBehaviour
 
     public Animator sceneBlackBarAnimator;
 
+    public Animator PDDAnimator;
+
     public bool talkked = false;
+
+    public CountDown countDown;
+
+    public Progress progress;
 
     void Start()
     {
@@ -46,6 +52,11 @@ public class RunStateManager : MonoBehaviour
         if (currentRunState != null) currentRunState.Leave();
         currentRunState = newState;
         currentRunState.Enter();
+    }
+
+    public void changeToPDDState()
+    {
+        ChangeState(new PingDuoDuo(this));
     }
 
 
