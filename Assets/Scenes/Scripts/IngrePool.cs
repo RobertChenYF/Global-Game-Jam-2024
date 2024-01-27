@@ -54,7 +54,7 @@ public class IngrePool : MonoBehaviour
     {
         currentObject = Instantiate(source, mouseDownPosition, Quaternion.identity);
         Ingredient ingredient = currentObject.GetComponent<Ingredient>();
-        ingredient.type = ingredientType;
+        ingredient.type = (int)ingredientType;
     }
 
     void UpdateObjectPosition()
