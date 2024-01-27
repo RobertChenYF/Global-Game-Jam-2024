@@ -19,7 +19,7 @@ public class MoneyShaker : MonoBehaviour
     {
 
         // The original position of the text object
-        Vector3 originalPosition = moneyText.transform.position;
+        Vector3 originalPosition = moneyText.transform.localPosition;
 
         // The shake length and magnitude parameters
         float shakeLength = Mathf.Clamp(Mathf.Abs(moneyDelta) * 0.1f, 0f, 2f); // The shake length depends on the money changed, but is capped at 2 seconds
@@ -39,14 +39,14 @@ public class MoneyShaker : MonoBehaviour
             float y = Mathf.PerlinNoise(0f, shakeTimer * 10f) * 2f - 1f;
 
             // Apply the shake offset to the text object position
-            moneyText.transform.position = originalPosition + new Vector3(x, y, 0f) * shakeMagnitude;
+            moneyText.transform.localPosition = originalPosition + new Vector3(x, y, 0f) * shakeMagnitude;
 
             // Wait for the next frame
             yield return null;
         }
 
         // Reset the text object position to the original position
-        moneyText.transform.position = originalPosition;
+        moneyText.transform.localPosition = originalPosition;
     }
 
     // The function to detect changes in the editor

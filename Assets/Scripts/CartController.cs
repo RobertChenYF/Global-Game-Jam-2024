@@ -164,7 +164,7 @@ public class CartController : MonoBehaviour
     private void hitCar()
     {
         speed = 8;
-
+        GlobalVariables.money -= 200;
         cameraController.Shake(0.25f,0.05f);
     }
 }

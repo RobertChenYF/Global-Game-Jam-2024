@@ -39,6 +39,8 @@ public class RunStateManager : MonoBehaviour
 
     public Progress progress;
 
+    public BuyButton buyButton;
+
     void Start()
     {
 
@@ -64,6 +66,9 @@ public class RunStateManager : MonoBehaviour
         ChangeState(new PingDuoDuo(this));
     }
 
-
+    public void changeMoney(int money)
+    {
+        GlobalVariables.money += money;
+    }
 
 }

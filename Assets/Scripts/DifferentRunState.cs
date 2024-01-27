@@ -165,9 +165,9 @@ public class PingDuoDuo : RunState
 
         timer += Time.deltaTime;
 
-        if (timer > 3)
+        if (timer > 5)
         {
-            EnableComponents();
+          //  EnableComponents();
 
         }
     }
@@ -180,6 +180,7 @@ public class PingDuoDuo : RunState
 
         manager.PDDAnimator.SetBool("enlarge", true);
 
+        EnableComponents();
         
 
        // manager.spaceCamera.SetActive(true);
@@ -196,6 +197,7 @@ public class PingDuoDuo : RunState
     {
         manager.progress.enabled = true;
         manager.countDown.enabled = true;
+        manager.buyButton.enabled = true;
     }
 
 

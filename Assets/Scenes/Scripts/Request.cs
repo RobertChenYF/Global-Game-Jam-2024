@@ -18,6 +18,13 @@ public class Request : MonoBehaviour
     public GameObject chenGuanText;
     public Sprite Chengguan;
 
+    public AudioSource soundEffectPlayer;
+
+    public List<AudioClip> customerGreet;
+
+    public List<AudioClip> customerSatisfied;
+
+    public List<AudioClip> customerUnhappy;
 
     public float countdownDuration = 10f;
     public float time;
@@ -31,6 +38,8 @@ public class Request : MonoBehaviour
     public Rectangle timeBar;
 
     public int orderSubmitted = 0;
+
+    public int index;
 
     private void Start()
     {
@@ -50,6 +59,7 @@ public class Request : MonoBehaviour
         }
         else
         {
+            soundEffectPlayer.PlayOneShot(customerUnhappy[index]);
             startNewRequest();
             Debug.Log("Countdown timer reached zero!");
         }
@@ -58,7 +68,9 @@ public class Request : MonoBehaviour
     public void startNewRequest()
     {
         time = countdownDuration;
-        customerSprite.sprite = customer[Random.Range(1,customer.Count)];
+        index = Random.Range(1, customer.Count);
+        customerSprite.sprite = customer[index];
+        soundEffectPlayer.PlayOneShot(customerGreet[index]);
         requestIngridient.Clear();
         requestIngridient.Add(AllIngridient.allIngri.面糊);
         PickRandomEnums(3);
@@ -72,6 +84,7 @@ public class Request : MonoBehaviour
 
     public void startChenGuanRequest()
     {
+        soundEffectPlayer.PlayOneShot(customerGreet[4]);
         time = 999;
         customerSprite.sprite = Chengguan;
         chenGuanText.SetActive(true);
@@ -105,6 +118,7 @@ public class Request : MonoBehaviour
 
         if (orderSubmitted > 5)
         {
+            soundEffectPlayer.PlayOneShot(customerUnhappy[4]);
             SceneManager.LoadScene(1);
         }
 
@@ -113,6 +127,7 @@ public class Request : MonoBehaviour
             if(!pancake.types.Contains(requestIngridient[i]))
             {
                 correct = false;
+
             }
 
         }
@@ -125,10 +140,13 @@ public class Request : MonoBehaviour
             }
 
         }
+
+
         if (correct)
         {
         GlobalVariables.money += 10;
         pancake.types.Clear();
+        soundEffectPlayer.PlayOneShot(customerSatisfied[index]);
         foreach(GameObject a in pancake.PancakeCook)
         {
             a.SetActive(false);
@@ -143,8 +161,10 @@ public class Request : MonoBehaviour
             {
                 startNewRequest();
             }
-        
-
+        }
+        else
+        {
+            soundEffectPlayer.PlayOneShot(customerUnhappy[index]);
         }
 
     }
