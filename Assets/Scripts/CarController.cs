@@ -25,4 +25,6 @@ public class CarController : MonoBehaviour
 
         transform.Translate(new Vector3(carSpeed * -1 * Time.deltaTime, 0, 0), Space.World);
     }
+
+
 }

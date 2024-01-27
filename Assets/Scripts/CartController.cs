@@ -31,6 +31,10 @@ public class CartController : MonoBehaviour
     // The coroutine for switching lanes
     private Coroutine switchCoroutine;
 
+    public CameraController cameraController;
+
+    public bool stop = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,15 +50,22 @@ public class CartController : MonoBehaviour
         transform.position += Vector3.right * speed * Time.deltaTime;
 
         // Check the input for switching lanes
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && stop == false)
         {
             // Switch up if possible
             SwitchUp();
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && stop == false)
         {
             // Switch down if possible
             SwitchDown();
+        }
+
+        if (speed < 10 && stop == false)
+        {
+            speed += Time.deltaTime;
+
+            speed = Mathf.Min(10, speed);
         }
     }
 
@@ -139,9 +150,19 @@ public class CartController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Car"))
+        if (collision.gameObject.CompareTag("Car") && stop == false)
         {
             Debug.Log("hit car");
+            collision.gameObject.GetComponent<Animator>().SetBool("Hit",true);
+            collision.gameObject.GetComponent<CarController>().carSpeed = 0;
+            hitCar();
         }
+    }
+
+
+    private void hitCar()
+    {
+        speed = 8;
+        cameraController.Shake(0.25f,0.05f);
     }
 }

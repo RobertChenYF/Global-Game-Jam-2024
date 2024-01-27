@@ -36,6 +36,6 @@ public class SpaceCartController : MonoBehaviour
         rb.velocity = direction * speed;
 
         // Clamp the position of the rigidbody within the boundaries
-        rb.position = new Vector2(Mathf.Clamp(rb.position.x, minX, maxX), Mathf.Clamp(rb.position.y, minY, maxY));
+        //rb.position = new Vector2(Mathf.Clamp(rb.position.x, minX, maxX), Mathf.Clamp(rb.position.y, minY, maxY));
     }
 }

@@ -8,6 +8,7 @@ public class DialogueSystem : MonoBehaviour
     // The UI text element to display the dialogue
     public TextMeshPro dialogueText;
 
+    public RunStateManager runStateManager;
     // The array of dialogue lines
     public string[] dialogueLines;
 
@@ -23,12 +24,14 @@ public class DialogueSystem : MonoBehaviour
     // The boolean to check if the dialogue is typing
     private bool isTyping;
 
+    public GameObject ButtonCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
         // Start the dialogue by displaying the first line
         currentLine = 0;
-        StartCoroutine(TypeLine());
+        StartCoroutine(TypeLine(dialogueLines[currentLine]));
     }
 
     // Update is called once per frame
@@ -42,18 +45,28 @@ public class DialogueSystem : MonoBehaviour
             {
                 // Increment the current line index and display the next line
                 currentLine++;
-                StartCoroutine(TypeLine());
+                StartCoroutine(TypeLine(dialogueLines[currentLine]));
             }
             else
             {
                 // End the dialogue by clearing the text
-                dialogueText.text = "";
+                // dialogueText.text = "";
+
+                //prompt the selection
+
+                ButtonCanvas.SetActive(true);
             }
         }
     }
 
+    public void Response(string response)
+    {
+        ButtonCanvas.SetActive(false);
+        StartCoroutine(TypeLineEnd(response));
+    }
+
     // The coroutine to display the dialogue line with the typewriter effect
-    IEnumerator TypeLine()
+    IEnumerator TypeLineEnd(string response)
     {
         // Set the isTyping flag to true
         isTyping = true;
@@ -62,7 +75,39 @@ public class DialogueSystem : MonoBehaviour
         dialogueText.text = "";
 
         // Loop through each character in the dialogue line
-        foreach (char c in dialogueLines[currentLine].ToCharArray())
+        foreach (char c in response.ToCharArray())
+        {
+            // Add the character to the text element
+            dialogueText.text += c;
+
+            // Play the typing sound effect
+            // typingSound.Play();
+
+            // Wait for the typing speed duration
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        // Set the isTyping flag to false
+        isTyping = false;
+
+        runStateManager.ChangeState(new ChaseEarth(runStateManager));
+        
+    }
+
+
+
+
+// The coroutine to display the dialogue line with the typewriter effect
+IEnumerator TypeLine(string response)
+    {
+        // Set the isTyping flag to true
+        isTyping = true;
+
+        // Clear the previous text
+        dialogueText.text = "";
+
+        // Loop through each character in the dialogue line
+        foreach (char c in response.ToCharArray())
         {
             // Add the character to the text element
             dialogueText.text += c;
