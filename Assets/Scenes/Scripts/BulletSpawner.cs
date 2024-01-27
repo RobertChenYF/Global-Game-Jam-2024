@@ -10,7 +10,8 @@ public class BulletSpawner : MonoBehaviour
 
     [Header("Bullet Attributes")]
     public GameObject bullet;
-    public float bulletLife = 1f;    
+    public string quote;
+    public float bulletLife = 1f;
     public float speed = 1f;
 
 
@@ -42,6 +43,7 @@ public class BulletSpawner : MonoBehaviour
     private void Fire() {
         if(bullet) {
             spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+            spawnedBullet.GetComponent<Bullet>().chara = quote[Random.Range(0, quote.Length)];
             spawnedBullet.GetComponent<Bullet>().speed = speed;
             spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
             spawnedBullet.transform.rotation = transform.rotation;

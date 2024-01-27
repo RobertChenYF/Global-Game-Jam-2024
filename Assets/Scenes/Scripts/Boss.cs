@@ -11,6 +11,15 @@ public class Boss : MonoBehaviour
     public float moveSpeed = 1f;  
     public float minPercent = 0.3f;
     public float maxPercent = 0.7f;
+    public float minBulletSpeed = 2.0f;
+    public float maxBulletSpeed = 4.0f;
+    public float minBulletLife = 4.0f;
+    public float maxBulletLife = 8.0f;
+    public float minFiringRate = 0.3f;
+    public float maxFiringRate = 0.6f;
+    public float minSpawnerLife = 4.0f;
+    public float maxSpawnerLife = 8.0f;
+
 
     private Rigidbody2D rb;
     private Vector2 moveDirection;
@@ -52,11 +61,10 @@ public class Boss : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<Bullet>() != null)
-        {
-            Destroy(col.gameObject);
-            Debug.Log("Bullet Destroyed");
-        }
+        // if (col.GetComponent<Bullet>() != null)
+        // {
+        //     Destroy(col.gameObject);
+        // }
         if (col.GetComponent<GoodBullet>() != null)
         {
             Destroy(col.gameObject);
@@ -70,10 +78,10 @@ public class Boss : MonoBehaviour
         Vector3 randomPosition = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(minPercent, maxPercent), Random.Range(0.5f, 1.0f), 0.2f));
         randomPosition.z = -2f;
         Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(180f, 360f));
-        float bulletLife = Random.Range(4.0f, 8.0f);
-        float speed = Random.Range(4.0f, 6.0f);
-        float firingRate = Random.Range(0.15f, 0.3f);
-        float spawnerLife = Random.Range(3.0f, 5.0f);
+        float bulletLife = Random.Range(minBulletLife, maxBulletLife);
+        float speed = Random.Range(minBulletSpeed, maxBulletSpeed);
+        float firingRate = Random.Range(minFiringRate, maxFiringRate);
+        float spawnerLife = Random.Range(minSpawnerLife, maxSpawnerLife);
         BulletSpawner.SpawnerType spawnerType = Random.Range(0f, 1f) > 0.85f ? BulletSpawner.SpawnerType.Straight : BulletSpawner.SpawnerType.Spin;
         GenerateSpawner(randomPosition, randomRotation, bulletLife, speed, firingRate, spawnerLife, spawnerType);
     }
