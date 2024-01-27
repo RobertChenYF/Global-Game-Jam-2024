@@ -38,4 +38,9 @@ public class SpaceCartController : MonoBehaviour
         // Clamp the position of the rigidbody within the boundaries
         //rb.position = new Vector2(Mathf.Clamp(rb.position.x, minX, maxX), Mathf.Clamp(rb.position.y, minY, maxY));
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        //Debug.Log($"Player Hit by {col.name}");
+    }
 }
