@@ -5,7 +5,7 @@ using UnityEngine;
 public class IngrePool : MonoBehaviour
 {
     public GameObject source;
-    public string ingredientType;
+    public AllIngridient.allIngri ingredientType;
     public int zPosition;
 
     private GameObject currentObject;
@@ -41,6 +41,15 @@ public class IngrePool : MonoBehaviour
         GenerateObject();
     }
 
+    private void OnMouseEnter()
+    {
+        transform.localScale = transform.localScale * 1.1f;
+    }
+
+    private void OnMouseExit()
+    {
+        transform.localScale = transform.localScale / 1.1f;
+    }
     void GenerateObject()
     {
         currentObject = Instantiate(source, mouseDownPosition, Quaternion.identity);
