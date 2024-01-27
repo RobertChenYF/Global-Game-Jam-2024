@@ -1,41 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class DanmakuGenerator : MonoBehaviour
 {
-    public GameObject objectPrefab; // 需要生成的物体的预制体
-    public float speed = 5f; // 物体的速度
+    public GameObject danmaku;
+    public GameObject player;
+    public float speed = 2f;
+    public float minKey;
+    public Dictionary<float,string> danmakus = new Dictionary<float,string>() {
+        {1.0f, "示例文本1"},
+        {2.0f, "示例文本2"},
+        {3.0f, "示例文本3"},
+        {4.0f, "示例文本4"},
+        {5.0f, "示例文本5"},
+        {6.0f, "示例文本6"},
+        {7.0f, "示例文本7"},
+        {8.0f, "示例文本8"},
+        {9.0f, "示例文本9"},
+        {10.0f, "示例文本10"},
+        {11.0f, "示例文本11"},
+        {12.0f, "示例文本12"},
+        {12.5f, "示例文本13"},
+        {13.0f, "示例文本14"},
+        {13.5f, "示例文本15"},
+        {14.0f, "示例文本16"},
+        {15.0f, "示例文本17"},
+        {16.0f, "示例文本18"},
+        {18.0f, "示例文本19"}
+    };
 
+    private float time = 0f;
+    
     void Start()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), 0f);
-        Vector3 targetPosition = Camera.main.ViewportToWorldPoint(randomPosition);
-        Vector2 direction = (targetPosition - randomPosition).normalized;
-
-        GameObject spawnedObject = Instantiate(objectPrefab, GetRandomSpawnPositionOutsideScreen(), Quaternion.identity);
-        
-        Rigidbody2D rb = spawnedObject.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.velocity = direction * speed;
-        }
-        else
-        {
-            Debug.LogError("物体上没有找到 Rigidbody2D 组件！");
-        }
+        time = 0f;
+        minKey = GetMinDanmakuKey();
     }
 
-    Vector3 GetRandomSpawnPositionOutsideScreen()
+    void Update()
     {
-        float screenWidth = Screen.width;
-        float screenHeight = Screen.height;
+        time += Time.deltaTime;
 
-        float randomX = Random.Range(1.2f, 2.2f) * screenWidth; // 在屏幕外右侧生成
-        float randomY = Random.Range(0f, 1f) * screenHeight;
+        if (time > minKey && danmakus.Count > 0)
+        {
+            Generate(danmakus[minKey]);
+            danmakus.Remove(minKey);
+            if (danmakus.Count >0)
+            {
+                minKey = GetMinDanmakuKey();
+            }
+        }
 
-        Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(randomX, randomY, 10f));
+    }
+    
+    public void Generate(string text)
+    {
+        Vector3 randomPosition = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(0f, 1f), Random.Range(1.1f, 1.2f), 0.2f));
+        randomPosition.z = -2f;
+        GameObject spawnedObject = Instantiate(danmaku, randomPosition, Quaternion.identity);
+        spawnedObject.GetComponent<Danmaku>().SetText(text);
+        spawnedObject.GetComponent<Danmaku>().SetSpeed(Random.Range(1f, 2f) * speed);
+    }
 
-        return spawnPosition;
+    private float GetMinDanmakuKey()
+    {
+        return Mathf.Min(danmakus.Keys.ToArray());
     }
 }
