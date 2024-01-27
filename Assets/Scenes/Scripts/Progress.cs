@@ -9,11 +9,14 @@ public class Progress : MonoBehaviour
     public Rocket rocket;
     public float maxSpeed = 4.0f;
     public int progressCount;
+public RunStateManager runStateManager;
+
 
     private Camera mainCamera;
     private float currentSpeed;
     private float originSpeed;
     private List<string> progresses = new List<string>()
+
     {
         "90",
         "95",
@@ -66,6 +69,7 @@ public class Progress : MonoBehaviour
         else
         {
            text.text = "100% 助力成功";
+            runStateManager.changeToShooterState();
            MoveObjects();
         }
         

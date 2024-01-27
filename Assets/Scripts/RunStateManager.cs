@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine.Utility;
 
 public class GlobalVariables
 {
@@ -41,6 +42,16 @@ public class RunStateManager : MonoBehaviour
 
     public BuyButton buyButton;
 
+    public GameObject gameCamera;
+
+    public CameraController cameraController;
+
+    public GameObject PDDFull;
+
+    public GameObject cartRocket;
+
+    public GameObject ScrollerBackground;
+
     void Start()
     {
 
@@ -69,6 +80,15 @@ public class RunStateManager : MonoBehaviour
     public void changeMoney(int money)
     {
         GlobalVariables.money += money;
+    }
+
+    public void changeToShooterState()
+    {
+        if (!currentRunState.ToString().Equals("SpaceShooter"))
+        {
+ChangeState(new SpaceShooter(this));
+        }
+        
     }
 
 }

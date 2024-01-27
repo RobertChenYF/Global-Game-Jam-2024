@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DifferentRunStates : MonoBehaviour
 {
 
@@ -78,12 +79,12 @@ public class ChaseEarth : RunState
 
         //when player choose to enter combat
 
-       if (manager.grannyCart.transform.position.x > 313 && manager.talkked == false)
-        {
-            manager.talkked = true;
-            manager.ChangeState(new PeopleTalkEarth(manager));
+       //if (manager.grannyCart.transform.position.x > 313 && manager.talkked == false)
+       // {
+       //     manager.talkked = true;
+       //     manager.ChangeState(new PeopleTalkEarth(manager));
            
-        }
+       // }
     }
 
     public override void Enter()
@@ -207,6 +208,10 @@ public class SpaceShooter : RunState
 {
     float velocity = 1;
 
+    float timer = 0;
+
+    bool scroll = false;
+
     public SpaceShooter(RunStateManager runStateManager) : base(runStateManager)
     {
 
@@ -214,20 +219,44 @@ public class SpaceShooter : RunState
 
     public override void StateBehavior()
     {
+
+        timer += Time.deltaTime;
+        //Debug.Log(timer);
+        if (timer >= 5)
+        {
+            //Debug.Log("check");
+            manager.PDDFull.SetActive(false);
+
+            manager.cartRocket.SetActive(true);
+        }
+
         if (manager.spaceCartController.enabled == false)
         {
-        velocity += Time.deltaTime * 2;
-        velocity = Mathf.Min(5, velocity);
+        velocity = velocity + Time.deltaTime * 1;
+        velocity = Mathf.Min(7, velocity);
+
+            //Debug.Log(velocity);
 
         manager.spaceCartController.gameObject.transform.position += new Vector3(0, velocity*Time.deltaTime, 0);
         }
 
-        if (velocity == 5 && manager.spaceCartController.enabled == false)
+        if (velocity == 7 && manager.spaceCartController.enabled == false)
         {
+            
+            Debug.Log("Stale Back");
+            
+            manager.spaceStaleCamera.transform.position = manager.gameCamera.transform.position;
+            manager.spaceStaleCamera.SetActive(true);
+            
             manager.spaceCartController.enabled = true;
 
-            manager.spaceStaleCamera.SetActive(true);
+            scroll = true;
             //start scroll the background
+        }
+
+        if (scroll)
+        {
+            manager.ScrollerBackground.transform.position += new Vector3(0, -7*Time.deltaTime, 0);
         }
 
 
@@ -239,6 +268,8 @@ public class SpaceShooter : RunState
         manager.cartController.enabled = false;
         manager.spaceCamera.SetActive(true);
         manager.sceneBlackBarAnimator.SetBool("SceneTransition",true);
+        manager.cameraController.enabled = false;
+
         //move the camera transform and spaceCart transform maybe use animation
 
     }
