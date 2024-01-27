@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public class GlobalVariables
+{
+    public static int money = 0;
+}
+
 public class RunStateManager : MonoBehaviour
 {
 
