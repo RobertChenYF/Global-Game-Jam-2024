@@ -65,6 +65,7 @@ public class Progress : MonoBehaviour
         }
         else
         {
+           text.text = "100% 助力成功";
            MoveObjects();
         }
         
