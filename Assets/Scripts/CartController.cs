@@ -155,6 +155,7 @@ public class CartController : MonoBehaviour
             Debug.Log("hit car");
             collision.gameObject.GetComponent<Animator>().SetBool("Hit",true);
             collision.gameObject.GetComponent<CarController>().carSpeed = 0;
+            //collision.gameObject.GetComponent<CarController>().mat.EnableKeyword("FADE_ON");
             hitCar();
         }
     }
@@ -163,6 +164,7 @@ public class CartController : MonoBehaviour
     private void hitCar()
     {
         speed = 8;
+
         cameraController.Shake(0.25f,0.05f);
     }
 }

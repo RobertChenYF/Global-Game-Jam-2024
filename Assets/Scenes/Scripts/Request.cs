@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Shapes;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class AllIngridient
@@ -14,6 +15,9 @@ public class AllIngridient
 public class Request : MonoBehaviour
 {
     public List<Sprite> customer;
+    public GameObject chenGuanText;
+    public Sprite Chengguan;
+
 
     public float countdownDuration = 10f;
     public float time;
@@ -25,6 +29,8 @@ public class Request : MonoBehaviour
     public List<AllIngridient.allIngri> requestIngridient;
 
     public Rectangle timeBar;
+
+    public int orderSubmitted = 0;
 
     private void Start()
     {
@@ -52,7 +58,7 @@ public class Request : MonoBehaviour
     public void startNewRequest()
     {
         time = countdownDuration;
-        customerSprite.sprite = customer[0];
+        customerSprite.sprite = customer[Random.Range(1,customer.Count)];
         requestIngridient.Clear();
         requestIngridient.Add(AllIngridient.allIngri.面糊);
         PickRandomEnums(3);
@@ -62,6 +68,17 @@ public class Request : MonoBehaviour
             ingridientIndicator[i].sprite = allIngridient[(int)requestIngridient[i+1]];
         }
 
+    }
+
+    public void startChenGuanRequest()
+    {
+        time = 999;
+        customerSprite.sprite = Chengguan;
+        chenGuanText.SetActive(true);
+        for (int i = 0; i < 3; i++)
+        {
+            ingridientIndicator[i].sprite = null;
+        }
     }
 
     void PickRandomEnums(int num) // Define a function that takes the number of enum values to pick as a parameter
@@ -85,6 +102,12 @@ public class Request : MonoBehaviour
     public void Submit()
     {
         bool correct = true;
+
+        if (orderSubmitted > 5)
+        {
+            SceneManager.LoadScene(1);
+        }
+
         for(int i = 0; i < requestIngridient.Count; i++)
         {
             if(!pancake.types.Contains(requestIngridient[i]))
@@ -104,13 +127,23 @@ public class Request : MonoBehaviour
         }
         if (correct)
         {
+        GlobalVariables.money += 10;
         pancake.types.Clear();
         foreach(GameObject a in pancake.PancakeCook)
         {
             a.SetActive(false);
         }
+            orderSubmitted++;
 
-        startNewRequest();
+            if (orderSubmitted > 5)
+            {
+                startChenGuanRequest();
+            }
+            else
+            {
+                startNewRequest();
+            }
+        
 
         }
 

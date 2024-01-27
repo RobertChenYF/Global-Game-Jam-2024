@@ -6,10 +6,12 @@ public class CarController : MonoBehaviour
 {
     public float carSpeed = 1;
     private float timer = 0;
+    public Material mat;
     // Start is called before the first frame update
     void Start()
     {
-        
+        mat = gameObject.GetComponent<SpriteRenderer>().material;
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
