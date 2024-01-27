@@ -385,7 +385,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928784747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.46, y: 5.03, z: 0}
+  m_LocalPosition: {x: -10.46, y: 5.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -407,6 +407,7 @@ MonoBehaviour:
   danmaku: {fileID: 2827370813942633695, guid: d829802bbd5f97f478390dbf1e68f2e8, type: 3}
   player: {fileID: 204177459}
   speed: 5
+  minKey: 0
 --- !u!61 &1928784750
 BoxCollider2D:
   m_ObjectHideFlags: 0
