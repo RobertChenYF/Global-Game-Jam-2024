@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1285180908298345211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285180908298345209}
+  - component: {fileID: 1285180908298345210}
+  m_Layer: 0
+  m_Name: RunStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285180908298345209
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285180908298345211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.31, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1285180908298345210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285180908298345211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bfd36de2762d48afa13c092def5642b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grannyCart: {fileID: 0}
+  cartController: {fileID: 0}
+  dialogueSystem: {fileID: 0}
+  carSpawner: {fileID: 0}
+  spaceCartController: {fileID: 0}
+  spaceCamera: {fileID: 0}
+  spaceStaleCamera: {fileID: 0}
+  sceneBlackBarAnimator: {fileID: 0}
+  PDDAnimator: {fileID: 0}
+  talkked: 0
+  countDown: {fileID: 0}
+  progress: {fileID: 0}
+  buyButton: {fileID: 0}
+  gameCamera: {fileID: 0}
+  cameraController: {fileID: 0}
+  PDDFull: {fileID: 0}
+  cartRocket: {fileID: 0}
+  ScrollerBackground: {fileID: 0}
+  DanMuGenerator: {fileID: 0}
+  PoliceCartController: {fileID: 0}
+  BGM: {fileID: 0}
+  SpaceMusic: {fileID: 8300000, guid: a97979a92f0b644c1b64b9caaa2c0e2e, type: 3}
