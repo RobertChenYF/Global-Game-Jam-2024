@@ -287,6 +287,7 @@ public class SpaceShooter : RunState
         manager.sceneBlackBarAnimator.SetBool("SceneTransition",true);
         manager.cameraController.enabled = false;
         manager.BGM.clip = manager.SpaceMusic;
+        manager.BGM.Play();
 
         //move the camera transform and spaceCart transform maybe use animation
 
