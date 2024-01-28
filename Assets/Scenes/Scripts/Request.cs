@@ -43,6 +43,8 @@ public class Request : MonoBehaviour
 
     public int pancakeIncome = 10;
 
+    public bool Inspace = false;
+
     private void Start()
     {
         requestIngridient = new List<AllIngridient.allIngri>();
@@ -121,7 +123,15 @@ public class Request : MonoBehaviour
         if (orderSubmitted > 5)
         {
             soundEffectPlayer.PlayOneShot(customerUnhappy[4]);
-            SceneManager.LoadScene(1);
+            if (Inspace)
+            {
+                SceneManager.LoadScene(4);
+            }
+            else
+            {
+                SceneManager.LoadScene(1);
+            }
+            
         }
 
         for(int i = 0; i < requestIngridient.Count; i++)

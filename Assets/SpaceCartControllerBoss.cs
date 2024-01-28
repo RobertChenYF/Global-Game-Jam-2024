@@ -24,6 +24,8 @@ public class SpaceCartControllerBoss : MonoBehaviour
     private Vector3 originLocation;
     private Vector3 moveDirection;
 
+    public GameObject scrollBackground;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class SpaceCartControllerBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scrollBackground.transform.position -= new Vector3(0, 7 * Time.deltaTime, 0);
         if (boss.health > 0)
         {
             float horizontal = Input.GetAxis("Horizontal");
@@ -73,6 +76,7 @@ public class SpaceCartControllerBoss : MonoBehaviour
     {
         if (col.GetComponent<Bullet>() != null)
         {
+            GlobalVariables.money -= Random.Range(8000,10000);
             Destroy(col.gameObject);
         }
     }

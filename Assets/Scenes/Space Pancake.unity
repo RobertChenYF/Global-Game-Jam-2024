@@ -287,6 +287,7 @@ MonoBehaviour:
   orderSubmitted: 0
   index: 0
   pancakeIncome: 999999
+  Inspace: 1
 --- !u!4 &64721963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 664723980610198725, guid: 8e1b6d691202d314fb845c19e81cbde2, type: 3}
@@ -8212,11 +8213,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2850457067368251635, guid: 5f487167c4f134af79ff66ee5455633e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 8.767661
+      value: 8.539911
       objectReference: {fileID: 0}
     - target: {fileID: 2850457067368251635, guid: 5f487167c4f134af79ff66ee5455633e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -13.050311
+      value: -12.887162
       objectReference: {fileID: 0}
     - target: {fileID: 2850457067368251635, guid: 5f487167c4f134af79ff66ee5455633e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

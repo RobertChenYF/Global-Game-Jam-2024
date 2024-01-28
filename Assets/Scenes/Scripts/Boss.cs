@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Shapes;
 public class Boss : MonoBehaviour
 {
     public int health = 40;
@@ -28,6 +28,9 @@ public class Boss : MonoBehaviour
     private float nextMoveTime;
     private float bulletTimer;
     private float nextBulletTime;
+
+    public Shapes.Rectangle healthBar;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -55,7 +58,8 @@ public class Boss : MonoBehaviour
             moveTimer = 0;
             nextMoveTime = Random.Range(0.4f, 1.2f);
         }
-
+        health = Mathf.Max(0, health);
+        healthBar.Width = health / 200.0f * 10.0f;
         Move();
     }
 

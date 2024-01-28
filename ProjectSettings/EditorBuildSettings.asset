@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Space Pancake.unity
     guid: 99acacf9cbf8f49edb41c9b381e8d5c3
+  - enabled: 1
+    path: Assets/SpaceBossScene.unity
+    guid: a072daa632ab0cb439b7487908eff153
+  - enabled: 1
+    path: Assets/Scenes/CutSceneVideoPlayer.unity
+    guid: 967cd74d64b3348658092dd774cd4341
   m_configObjects: {}
