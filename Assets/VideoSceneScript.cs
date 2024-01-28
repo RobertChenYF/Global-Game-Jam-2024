@@ -16,9 +16,9 @@ public class VideoSceneScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > 13)
+        if (timer > 12)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }
