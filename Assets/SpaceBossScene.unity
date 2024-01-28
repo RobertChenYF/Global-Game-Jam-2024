@@ -133,11 +133,11 @@ GameObject:
   m_Component:
   - component: {fileID: 204177461}
   - component: {fileID: 204177460}
-  - component: {fileID: 204177462}
   - component: {fileID: 204177464}
   - component: {fileID: 204177463}
+  - component: {fileID: 204177465}
   m_Layer: 0
-  m_Name: SpaceCart
+  m_Name: PlayerCart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,31 +203,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204177459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0, z: 0}
+  m_LocalPosition: {x: -0.03, y: -3.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 339603681}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &204177462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 204177459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8384ff84647bb4ec5801896a07432b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  minX: -4
-  maxX: 4
-  minY: -4.5
-  maxY: 4.5
 --- !u!61 &204177463
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -275,6 +258,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &204177465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204177459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf63d2c9ce362f445a457535dabe36fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 1928784752}
+  speed: 5
+  moveRange: 1.5
+  minX: -10
+  maxX: 10
+  minY: -10
+  maxY: 10
 --- !u!4 &339603681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6906012800717883158, guid: 8a3bfb5a47d8f364eb2044ccff96d808, type: 3}
@@ -383,6 +385,10 @@ PrefabInstance:
       propertyPath: bulletLife
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4069673526426889394, guid: 8a3bfb5a47d8f364eb2044ccff96d808, type: 3}
+      propertyPath: firingRate
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6906012800717883158, guid: 8a3bfb5a47d8f364eb2044ccff96d808, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -443,7 +449,7 @@ GameObject:
   - component: {fileID: 1928784752}
   - component: {fileID: 1928784753}
   m_Layer: 0
-  m_Name: Boss
+  m_Name: BossChengGuan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +468,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1928784750
 BoxCollider2D:
@@ -554,11 +560,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba5e873aba6d2984388b8f072c66ecbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 60
+  health: 120
   spawner: {fileID: 3203938346527517438, guid: a9706d219b981bc44b10ca0a8ebdb1b1, type: 3}
   moveRange: 1
   moveInterval: 0.8
   moveSpeed: 2
+  minPercent: 0.3
+  maxPercent: 0.7
+  minBulletSpeed: 2
+  maxBulletSpeed: 4
+  minBulletLife: 4
+  maxBulletLife: 8
+  minBulletNums: 6
+  maxBulletNums: 18
+  minSpawnerLife: 5
+  maxSpawnerLife: 8
 --- !u!50 &1928784753
 Rigidbody2D:
   serializedVersion: 4
