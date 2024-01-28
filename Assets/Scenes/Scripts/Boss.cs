@@ -15,9 +15,9 @@ public class Boss : MonoBehaviour
     public float maxBulletSpeed = 4.0f;
     public float minBulletLife = 4.0f;
     public float maxBulletLife = 8.0f;
-    public float minFiringRate = 0.3f;
-    public float maxFiringRate = 0.6f;
-    public float minSpawnerLife = 4.0f;
+    public int minBulletNums = 10;
+    public int maxBulletNums = 20;
+    public float minSpawnerLife = 6.0f;
     public float maxSpawnerLife = 8.0f;
 
 
@@ -47,7 +47,7 @@ public class Boss : MonoBehaviour
             GenerateRandomSpawner();
             GenerateRandomSpawner();
             bulletTimer = 0;
-            nextBulletTime = Random.Range(1.0f, 1.6f);
+            nextBulletTime = Random.Range(1.5f, 2.5f);
         }
 
         if (moveTimer >= nextMoveTime) {
@@ -61,10 +61,6 @@ public class Boss : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        // if (col.GetComponent<Bullet>() != null)
-        // {
-        //     Destroy(col.gameObject);
-        // }
         if (col.GetComponent<GoodBullet>() != null)
         {
             Destroy(col.gameObject);
@@ -80,19 +76,19 @@ public class Boss : MonoBehaviour
         Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(180f, 360f));
         float bulletLife = Random.Range(minBulletLife, maxBulletLife);
         float speed = Random.Range(minBulletSpeed, maxBulletSpeed);
-        float firingRate = Random.Range(minFiringRate, maxFiringRate);
+        int bulletNums = Random.Range(minBulletNums, maxBulletNums);
         float spawnerLife = Random.Range(minSpawnerLife, maxSpawnerLife);
-        BulletSpawner.SpawnerType spawnerType = Random.Range(0f, 1f) > 0.85f ? BulletSpawner.SpawnerType.Straight : BulletSpawner.SpawnerType.Spin;
-        GenerateSpawner(randomPosition, randomRotation, bulletLife, speed, firingRate, spawnerLife, spawnerType);
+        BulletSpawner.SpawnerType spawnerType = (Random.Range(0f, 1f) > 0.40f) ? BulletSpawner.SpawnerType.Spin : BulletSpawner.SpawnerType.Circle;      
+        GenerateSpawner(randomPosition, randomRotation, bulletLife, speed, bulletNums, spawnerLife, spawnerType);
     }
 
-    void GenerateSpawner(Vector3 location, Quaternion rotation, float bulletLife, float speed, float firingRate, float spawnerLife, BulletSpawner.SpawnerType spawnerType)
+    void GenerateSpawner(Vector3 location, Quaternion rotation, float bulletLife, float speed, int bulletNums, float spawnerLife, BulletSpawner.SpawnerType spawnerType)
     {
         GameObject spawnerObject = Instantiate(spawner, location, rotation);
         spawnerObject.GetComponent<BulletSpawner>().speed = speed;
         spawnerObject.GetComponent<BulletSpawner>().bulletLife = bulletLife;
         spawnerObject.GetComponent<BulletSpawner>().spawnerLife = spawnerLife;
-        spawnerObject.GetComponent<BulletSpawner>().firingRate = firingRate;
+        spawnerObject.GetComponent<BulletSpawner>().bulletNums = bulletNums;
         spawnerObject.GetComponent<BulletSpawner>().spawnerType = spawnerType;
     }
 

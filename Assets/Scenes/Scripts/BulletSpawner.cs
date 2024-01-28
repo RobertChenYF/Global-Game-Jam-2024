@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    public enum SpawnerType { Straight, Spin }
+    public enum SpawnerType { Straight, Spin, Circle }
 
     [Header("Bullet Attributes")]
     public GameObject bullet;
@@ -17,9 +17,9 @@ public class BulletSpawner : MonoBehaviour
 
     [Header("Spawner Attributes")]
     public SpawnerType spawnerType;
-    public float firingRate = 1f;
+    public int bulletNums = 15;
+    public int bulletCounter = 0;
     public float spawnerLife = 4f;
-
 
     private GameObject spawnedBullet;
     private float timer = 0f;
@@ -28,22 +28,41 @@ public class BulletSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        spawnTimer += Time.deltaTime;
-        if(spawnerType == SpawnerType.Spin) transform.eulerAngles = new Vector3(0f,0f,transform.eulerAngles.z+1f);
-        if(timer >= firingRate) {
-            Fire();
-            timer = 0;
-        }
-        if (spawnTimer >= spawnerLife){
+        if (spawnerType == SpawnerType.Circle)
+        {
+            float intervalAngle = 360f/ bulletNums;
+            int randomIndex = Random.Range(0, quote.Length);
+            for (int i = 0; i < bulletNums; i++)
+            {
+                transform.eulerAngles = new Vector3(0f,0f,transform.eulerAngles.z + intervalAngle);
+                Fire(i + randomIndex);
+            }
             Destroy(gameObject);
+        }
+        else
+        {
+            timer += Time.deltaTime;
+            spawnTimer += Time.deltaTime;           
+            if(spawnerType == SpawnerType.Spin)
+            {
+                transform.eulerAngles = new Vector3(0f,0f,transform.eulerAngles.z+1f);
+            }
+            if(timer >= spawnerLife / bulletNums) {
+                Fire(bulletCounter);
+                bulletCounter++;
+                timer = 0;
+            }
+            if (spawnTimer >= spawnerLife){
+                Destroy(gameObject);
+                bulletCounter = Random.Range(0, quote.Length);
+            }
         }
     }
 
-    private void Fire() {
+    private void Fire(int index) {
         if(bullet) {
             spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
-            spawnedBullet.GetComponent<Bullet>().chara = quote[Random.Range(0, quote.Length)];
+            spawnedBullet.GetComponent<Bullet>().chara = quote[index % quote.Length];
             spawnedBullet.GetComponent<Bullet>().speed = speed;
             spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
             spawnedBullet.transform.rotation = transform.rotation;
