@@ -12,8 +12,9 @@ public class DanmakuGenerator : MonoBehaviour
     public float maxPercent = 0.7f;
     public float minKey;
     public Dictionary<float,string> danmakus = new Dictionary<float,string>() {
-        {0.5f, "在这个神秘的星球上"},
-        {2.5f, "藏着一个令人不安的谜团"},
+        {0.5f, "使用方向键移动"},
+        {1.5f, "在这个神秘的星球上"},
+        {3.5f, "藏着一个令人不安的谜团"},
         {5.5f, "一位幽灵漂浮在星球的废弃"},
         {8.5f, "时常出没于废墟之间"},
         {11.0f, "星球的居民"},

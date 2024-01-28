@@ -21,6 +21,7 @@ public class RestartManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SceneManager.LoadScene(2);
+            GlobalVariables.money = 0;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
