@@ -5,9 +5,12 @@ public class SpaceCartControllerBoss : MonoBehaviour
 {
     // A reference to the Rigidbody2D component
     public Boss boss;
+    public GameObject square;
     // The speed of the player movement
     public float speed = 5f;
     public float moveRange = 1.5f;
+    public float alphaChangeSpeed = 0.01f;
+    public float maxSquareAlpha = 0.8f;
 
     public float minX = -10f;
     public float maxX = 10f;
@@ -15,6 +18,7 @@ public class SpaceCartControllerBoss : MonoBehaviour
     public float maxY = 10f;
 
     private Rigidbody2D rb;
+    private SpriteRenderer squareSR;
     private float moveTime;
     private float nextMoveTime;
     private Vector3 originLocation;
@@ -25,6 +29,7 @@ public class SpaceCartControllerBoss : MonoBehaviour
     {
         // Get the Rigidbody2D component from the game object
         rb = GetComponent<Rigidbody2D>();
+        squareSR = square.GetComponent<SpriteRenderer>();
         moveTime = 0f;
         nextMoveTime = 0.3f;
         originLocation = transform.position;
@@ -54,6 +59,13 @@ public class SpaceCartControllerBoss : MonoBehaviour
                 nextMoveTime = Random.Range(0.4f, 1.2f);
             }
             AutoMove();
+            if (squareSR.color.a <= maxSquareAlpha)
+            {
+                Color spriteColor = squareSR.color;
+                Debug.Log(Time.deltaTime);
+                spriteColor.a += alphaChangeSpeed * Time.deltaTime;
+                squareSR.color = spriteColor;
+            }
         }
     }
 
