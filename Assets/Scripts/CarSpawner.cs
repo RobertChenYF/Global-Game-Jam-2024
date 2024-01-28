@@ -42,7 +42,7 @@ public class CarSpawner : MonoBehaviour
                     // Move the object to a spawn point
                     obj.transform.position = spawnPoints[i].position;
                     obj.GetComponent<SpriteRenderer>().sortingOrder = i - 1;
-                    obj.GetComponent<CarController>().carSpeed = Random.Range(-0.5f, 0.5f) + 1;
+                    obj.GetComponent<CarController>().carSpeed = Random.Range(-1.0f, 1.0f) + 1.5f;
                     obj.GetComponent<Animator>().SetBool("Hit", false);
                     obj.GetComponent<CarController>().mat.DisableKeyword("FADE_OFF");
                 }

@@ -57,6 +57,10 @@ public class RunStateManager : MonoBehaviour
 
     public PoliceCartController PoliceCartController;
 
+    public AudioSource BGM;
+
+    public AudioClip SpaceMusic;
+
     void Start()
     {
 
