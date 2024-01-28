@@ -41,6 +41,8 @@ public class Request : MonoBehaviour
 
     public int index;
 
+    public int pancakeIncome = 10;
+
     private void Start()
     {
         requestIngridient = new List<AllIngridient.allIngri>();
@@ -144,7 +146,7 @@ public class Request : MonoBehaviour
 
         if (correct)
         {
-        GlobalVariables.money += 10;
+        GlobalVariables.money += pancakeIncome;
         pancake.types.Clear();
         soundEffectPlayer.PlayOneShot(customerSatisfied[index]);
         foreach(GameObject a in pancake.PancakeCook)
