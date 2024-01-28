@@ -90,7 +90,7 @@ public class RunStateManager : MonoBehaviour
     public void changeToMarsStandScene()
     {
         Debug.Log("switch to mars stand scene");
-        //SceneManager.LoadScene();
+        SceneManager.LoadScene(3);
     }
 
     public void changeToShooterState()
