@@ -8,7 +8,7 @@ public class CountDown : MonoBehaviour
     public BuyButton buyButton;
     public Progress progress;
 
-    public float countdownDuration = 10f;
+    public float countdownDuration = 15f;
     private float time;
     private TextMeshPro text;
 

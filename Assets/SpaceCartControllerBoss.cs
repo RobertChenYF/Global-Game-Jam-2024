@@ -6,6 +6,7 @@ public class SpaceCartControllerBoss : MonoBehaviour
     // A reference to the Rigidbody2D component
     public Boss boss;
     public GameObject square;
+    public GameObject quote;
     // The speed of the player movement
     public float speed = 5f;
     public float moveRange = 1.5f;
@@ -35,6 +36,7 @@ public class SpaceCartControllerBoss : MonoBehaviour
         moveTime = 0f;
         nextMoveTime = 0.3f;
         originLocation = transform.position;
+        quote.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,6 +70,10 @@ public class SpaceCartControllerBoss : MonoBehaviour
                 Debug.Log(Time.deltaTime);
                 spriteColor.a += alphaChangeSpeed * Time.deltaTime;
                 squareSR.color = spriteColor;
+            }
+            else
+            {
+                quote.SetActive(true);
             }
         }
     }
